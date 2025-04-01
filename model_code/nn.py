@@ -15,12 +15,13 @@ import math
 import torch as th
 import torch.nn as nn
 import logging
-class SiLU(nn.Module):
+
+class SiLU(nn.Module): # Sigmoid Linear Unit x*sigma(x)
     def forward(self, x):
         return x * th.sigmoid(x)
 
 
-class GroupNorm32(nn.GroupNorm):
+class GroupNorm32(nn.GroupNorm): # GroupNorm is a normalization over a mini-batch of inputs
     def forward(self, x):
         return super().forward(x.float()).type(x.dtype)
 
